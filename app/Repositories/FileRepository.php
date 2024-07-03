@@ -24,22 +24,31 @@ class FileRepository
         $query = $this->model->query();
 
         if ($request->has('name')) {
-            $query->where('name', $request->name);
+            $searchTerm = '%' . strtolower($request->input('name')) . '%';
+            $query->whereRaw('LOWER(name) LIKE ?', [$searchTerm]);
         }
-        if ($request->has('price')) {
-            $query->where('price', $request->price);
+        if ($request->has('price_min') && $request->has('price_max')) {
+            $query->whereBetween('price', [$request->input('price_min'), $request->input('price_max')]);
+        } elseif ($request->has('price_min')) {
+            $query->where('price', '>=', $request->input('price_min'));
+        } elseif ($request->has('price_max')) {
+            $query->where('price', '<=', $request->input('price_max'));
         }
         if ($request->has('bedrooms')) {
-            $query->where('bedrooms', $request->bedrooms);
+            $query->where('bedrooms', $request->input('bedrooms'));
         }
         if ($request->has('bathrooms')) {
-            $query->where('bathrooms', $request->bathrooms);
+            $query->where('bathrooms', $request->input('bathrooms'));
         }
         if ($request->has('storeys')) {
-            $query->where('storeys', $request->storeys);
+            $query->where('storeys', $request->input('storeys'));
         }
         if ($request->has('garages')) {
-            $query->where('garages', $request->garages);
+            $query->where('garages', $request->input('garages'));
+        }
+
+        if ($request->has('sortKey') && $request->has('sortOrder')) {
+            $query->orderBy($request->input('sortKey'), $request->input('sortOrder'));
         }
 
         $perPage = $request->input('perPage', 15);
