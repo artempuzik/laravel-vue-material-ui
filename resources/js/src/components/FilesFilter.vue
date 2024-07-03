@@ -1,23 +1,28 @@
 <script setup>
 import { ref, watch } from 'vue';
 import { useRoute, useRouter } from 'vue-router';
+import debounce from 'lodash.debounce'
 
 const route = useRoute();
 const router = useRouter();
 
 const filters = ref({
     name: '',
-    price_min: '',
-    price_max: '',
-    bedrooms: '',
-    bathrooms: '',
-    storeys: '',
-    garages: ''
+    price_min: 0,
+    price_max: 0,
+    bedrooms: 0,
+    bathrooms: 0,
+    storeys: 0,
+    garages: 0,
 });
 
 watch(() => route.query, (newQuery) => {
     for (let key in filters.value) {
-        filters.value[key] = newQuery[key] || '';
+        if(key === 'name') {
+            filters.value[key] = newQuery[key] || '';
+        } else {
+            filters.value[key] = +newQuery[key] || 0;
+        }
     }
 }, { immediate: true });
 
@@ -35,7 +40,7 @@ const updateUrl = () => {
     router.push({ path: route.path, query });
 };
 
-watch(() => filters, updateUrl, {deep: true});
+watch(() => filters, debounce(updateUrl, 500), {deep: true})
 
 </script>
 

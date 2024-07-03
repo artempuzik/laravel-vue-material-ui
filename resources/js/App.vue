@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import FileTable from "@/src/views/FileTable.vue";
 
-const props = withDefaults(defineProps<{
+withDefaults(defineProps<{
     files: []
 }>(), {
     files: () => []

@@ -8,6 +8,8 @@
 <script setup>
 import FilesFilter from "@/src/components/FilesFilter.vue";
 import AppTable from "@/src/components/AppTable.vue";
+import {ref} from "vue";
+
 </script>
 
 <style scoped>
