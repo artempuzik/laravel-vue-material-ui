@@ -40,13 +40,39 @@ watch(() => filters, updateUrl, {deep: true});
 </script>
 
 <template>
-    <el-input v-model="filters.name" placeholder="Filter by Name" style="margin: 10px 0;" />
-    <el-input v-model="filters.price_min" placeholder="Filter by Price" style="margin: 10px 0;" />
-    <el-input v-model="filters.price_max" placeholder="Filter by Price" style="margin: 10px 0;" />
-    <el-input v-model="filters.bedrooms" placeholder="Filter by Bedrooms" style="margin: 10px 0;" />
-    <el-input v-model="filters.bathrooms" placeholder="Filter by Bathrooms" style="margin: 10px 0;" />
-    <el-input v-model="filters.storeys" placeholder="Filter by Storeys" style="margin: 10px 0;" />
-    <el-input v-model="filters.garages" placeholder="Filter by Garages" style="margin: 10px 0;" />
+    <div class="col-12 mb-4">
+        <div class="col-xl-6">
+            <el-input v-model="filters.name" placeholder="Filter by Name" clearable />
+        </div>
+        <div class="row col-xl-6 my-2">
+            <div class="col-xl-3 d-flex flex-column">
+                <label>Filter by Price min</label>
+                <el-input-number v-model="filters.price_min" clearable />
+            </div>
+            <div class="col-xl-3 d-flex flex-column">
+                <label>Filter by Price max</label>
+                <el-input-number v-model="filters.price_max" clearable />
+            </div>
+        </div>
+        <div class="row col-xl-12 my-2">
+            <div class="col-xl-3 d-flex flex-column">
+                <label>Filter by Bedrooms</label>
+                <el-input-number v-model="filters.bedrooms" clearable />
+            </div>
+            <div class="col-xl-3 d-flex flex-column">
+                <label>Filter by Bathrooms</label>
+                <el-input-number v-model="filters.bathrooms" clearable />
+            </div>
+            <div class="col-xl-3 d-flex flex-column">
+                <label>Filter by Storeys</label>
+                <el-input-number v-model="filters.storeys" clearable />
+            </div>
+            <div class="col-xl-3 d-flex flex-column">
+                <label>Filter by Garages</label>
+                <el-input-number v-model="filters.garages" clearable />
+            </div>
+        </div>
+    </div>
 </template>
 
 <style scoped></style>
