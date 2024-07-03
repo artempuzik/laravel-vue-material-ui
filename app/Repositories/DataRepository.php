@@ -2,24 +2,24 @@
 
 namespace App\Repositories;
 
-use App\Models\File;
+use App\Models\Data;
 use Illuminate\Http\Request;
 
-class FileRepository
+class DataRepository
 {
     protected $model;
 
     /**
      * FileRepository constructor.
      *
-     * @param File $model
+     * @param Data $model
      */
-    public function __construct(File $model)
+    public function __construct(Data $model)
     {
         $this->model = $model;
     }
 
-    public function getAllFiles(Request $request)
+    public function getAllData(Request $request)
     {
         $query = $this->model->query();
 

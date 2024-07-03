@@ -27,7 +27,7 @@ class ImportCsvData extends Command
         }
 
         if (!empty($rows)) {
-            DB::table('files')->insert($rows);
+            DB::table('data')->insert($rows);
         }
 
         $this->info('CSV data imported successfully.');

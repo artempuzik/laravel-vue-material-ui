@@ -1,5 +1,5 @@
 <?php
-use App\Http\Controllers\FileController;
+use App\Http\Controllers\DataController;
 use Illuminate\Support\Facades\Route;
 
-Route::get('/files', [FileController::class, 'index']);
+Route::get('/files', [DataController::class, 'index']);

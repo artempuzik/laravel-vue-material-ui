@@ -2,22 +2,23 @@
 
 namespace App\Http\Controllers;
 
-use App\Repositories\DataRepository;
 use Illuminate\Http\Request;
+use App\Repositories\DataRepository;
+use Illuminate\Routing\Controller;
 
-class FrontendController
+class DataController extends Controller
 {
-    private DataRepository $dataRepository;
+    protected DataRepository $dataRepository;
 
     public function __construct(DataRepository $dataRepository)
     {
         $this->dataRepository = $dataRepository;
     }
 
-    public function show(Request $request)
+    public function index(Request $request)
     {
         $files = $this->dataRepository->getAllData($request);
 
-        return view('frontend', compact('files'));
+        return response()->json($files);
     }
 }

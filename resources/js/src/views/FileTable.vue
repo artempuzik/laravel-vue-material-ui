@@ -1,5 +1,5 @@
 <template>
-    <div class="col-12 p-4">
+    <div class="container col-12 p-4">
         <files-filter />
         <app-table />
     </div>
